@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Envelope + Letter (Open/Close on Click)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong>Para ti.</strong>
+                        <p>
+                            Si la perfección existe, seguro lleva tu nombre.
+
+                            Eres como una flor en medio del desierto, única y deslumbrante.
+
+                            ¿Tienes un mapa? Porque me perdí en tus ojos.
+                            
+                            Eres como un rayo de sol en un día nublado.
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+            <div class="hearts-container"></div> <!-- Contenedor para los corazones -->
+        </div>
+    </div>
+    <script>
+        const envelope = document.querySelector('.envelope-wrapper');
+
+function createHeart() {
+    const heartContainer = document.querySelector('.hearts-container');
+    const heart = document.createElement('div');
+    heart.classList.add('heart-small');
+    heart.style.top = `${Math.random() * 100}%`;
+    heart.style.left = `${Math.random() * 100}%`;
+    heartContainer.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 1000); // Eliminar el corazón después de 1 segundo
+}
+
+envelope.addEventListener('click', () => {
+    envelope.classList.toggle('flap');
+    if (envelope.classList.contains('flap')) {
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createHeart, i * 100); // Crear 20 corazones con un intervalo de 100ms
+        }
+    }
+});
+    </script>
+</body>
+</html>
